@@ -1,4 +1,4 @@
-package com.hbjy.lxy.frame.app.dialog;
+package com.hbjy.lxy.library.app.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -22,11 +22,10 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.hbjy.lxy.frame.R;
-import com.hbjy.lxy.frame.app.dialog.effects.BaseEffects;
-import com.hbjy.lxy.frame.utils.ColorUtils;
+import com.hbjy.lxy.library.R;
+import com.hbjy.lxy.library.app.dialog.effects.BaseEffects;
+import com.hbjy.lxy.library.app.utils.ColorUtils;
 
-import butterknife.InjectView;
 
 /**
  * Created by Administrator on 2017/2/27 0027.
@@ -156,6 +155,7 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
     public NiftyDialogBuilder setTitleText(CharSequence title) {
         toggleView(mTitleLinear, title);
         mTitle.setText(title);
+        mTitle.setVisibility(View.VISIBLE);
         return this;
     }
 
@@ -371,7 +371,7 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
      * @param orientation
      * @return
      */
-    private NiftyDialogBuilder setOrientation(int orientation){
+    private NiftyDialogBuilder setRadioGroupOrientation(int orientation){
         mGroup.setOrientation(orientation);
         return this;
     }
@@ -386,6 +386,7 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
     public NiftyDialogBuilder setSingleChoiceItem(final String[] items, int i, final OnClickListener listener){
         int temp;
         mGroup.removeAllViews();
+        mGroup.setVisibility(View.VISIBLE);
         if (items.length < 1){
             Log.i(TAG, "error:字符串数组为空 ");
         }else {
@@ -410,7 +411,7 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
                 }
             }
         }
-        mGroup.setVisibility(View.VISIBLE);
+
         mGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -430,6 +431,8 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
 
     public NiftyDialogBuilder setMultChoiceItems(String[] items , boolean isCheck[],
                                                  final OnMultiChoiceClickListener listener){
+        mContentLinear.removeAllViews();
+        mContentLinear.setVisibility(View.VISIBLE);
         if (items.length < 0){
             Log.i(TAG, "error:字符串数组为空 ");
         }else {
@@ -449,7 +452,7 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
                 box.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (isChecked){
+                        if (buttonView.isChecked()){
                             listener.onClick(NiftyDialogBuilder.this,temp,isChecked);
                         }
                     }
@@ -468,7 +471,11 @@ public class NiftyDialogBuilder extends Dialog implements DialogInterface {
     public void dismiss() {
         super.dismiss();
         mBtRight.setVisibility(View.GONE);
-        mBtLeft.setVisibility(View.GONE
-        );
+        mBtLeft.setVisibility(View.GONE);
+        mTitle.setText("");
+        mMsg.setVisibility(View.GONE);
+        mGroup.setVisibility(View.GONE);
+        mContentLinear.setVisibility(View.GONE);
+        mFrame.setVisibility(View.GONE);
     }
 }
