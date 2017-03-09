@@ -1,83 +1,55 @@
 package com.hbjy.lxy.reset;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.ListActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import com.hbjy.lxy.library.app.dialog.NiftyDialogBuilder;
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+@Route(path = "/lxy/main")
+public class MainActivity extends ListActivity {
 
-    @InjectView(R.id.main_bt1)
-    Button mainBt1;
-    @InjectView(R.id.main_bt2)
-    Button mainBt2;
-    @InjectView(R.id.main_bt3)
-    Button mainBt3;
-    String[] items = {"a","b","c","d"};
-    boolean isCheck[] = {};
-
+    private void navigation(){
+        ARouter.getInstance().build("/lxy/main").navigation();
+    }
     private static final String TAG = MainActivity.class.getSimpleName();
-    private NiftyDialogBuilder builder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
-        builder = NiftyDialogBuilder.getInstance(this);
+
+        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,info);
+        setListAdapter(adapter);
 
     }
 
-    @OnClick({R.id.main_bt1, R.id.main_bt2, R.id.main_bt3})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.main_bt1:
-                builder.setTitleText("普通")
-                        .setIcon(R.mipmap.ic_launcher)
-                        .setMessage("这是测试")
-                        .setButtonLeftClick(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Log.i(TAG, "onClick: 取消");
-                                builder.dismiss();
-                            }
-                        })
-                        .setButtonRightClick(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Log.i(TAG, "onClick: 确定");
-                                builder.dismiss();
-                            }
-                        })
-                        .show();
-                break;
-            case R.id.main_bt2:
-                builder.setTitleText("单选")
-                        .setSingleChoiceItem(items, 3, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Log.i(TAG, "onClick: " + items[which]);
-                            }
-                        })
-                        .show();
-                break;
-            case R.id.main_bt3:
-                builder.setTitleText("多选");
-                builder.setMultChoiceItems(items, isCheck, new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                        Log.i(TAG, "onClick: " + items[which]);
-                    }
-                }).show();
-                break;
+    private static ActivityInfo[] info = {
+
+    };
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        BaseActivity activity = info[position].activity;
+        if (activity != null) {
+            activity.navigation();
+        }
+    }
+
+    public class ActivityInfo{
+        private String title;
+        private String message;
+        public  BaseActivity activity;
+
+        public ActivityInfo(String message, BaseActivity activity) {
+            this.message = message;
+            this.activity = activity;
+            title = activity.getClass().getSimpleName();
         }
     }
 }

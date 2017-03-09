@@ -1,0 +1,2 @@
+dialog 需要nineoldandroids jar包
+注意：多选没有完成
