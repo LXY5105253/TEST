@@ -1,8 +1,11 @@
-package com.hbjy.lxy.reset;
+package com.hbjy.lxy.reset.base;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
@@ -46,4 +49,5 @@ public class BaseApplication extends Application {
         }
         ARouter.init(this);
     }
+
 }
