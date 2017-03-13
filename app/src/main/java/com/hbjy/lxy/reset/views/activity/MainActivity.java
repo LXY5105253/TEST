@@ -2,24 +2,15 @@ package com.hbjy.lxy.reset.views.activity;
 
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.hbjy.lxy.reset.R;
 import com.hbjy.lxy.reset.base.BaseActivity;
-import com.hbjy.lxy.reset.base.BaseApplication;
-
-import java.util.ArrayList;
 
 import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.OnClick;
 
 @Route(path = "/lxy/main")
 public class MainActivity extends ListActivity {

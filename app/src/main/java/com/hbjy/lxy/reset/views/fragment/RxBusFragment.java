@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.hbjy.lxy.library.rx.transformers.RxBus;
+import com.hbjy.lxy.library.rx.RxBus;
 import com.hbjy.lxy.reset.R;
 import com.hbjy.lxy.reset.utils.event.TextEvent;
 
@@ -23,7 +23,7 @@ public class RxBusFragment extends android.support.v4.app.Fragment {
     @InjectView(R.id.rxbus_tv_show)
     TextView tvShow;
 
-    public RxBusFragment getInstance(){
+    public static RxBusFragment getInstance(){
         Bundle bundle = new Bundle();
         RxBusFragment fragment = new RxBusFragment();
         fragment.setArguments(bundle);
@@ -33,7 +33,7 @@ public class RxBusFragment extends android.support.v4.app.Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_rxbus, container);
+        View view = inflater.inflate(R.layout.fragment_rxbus, container,false);
         ButterKnife.inject(this, view);
         return view;
     }

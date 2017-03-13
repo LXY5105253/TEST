@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.hbjy.lxy.library.rx.transformers.RxBus;
+import com.hbjy.lxy.library.rx.RxBus;
 import com.hbjy.lxy.reset.R;
 import com.hbjy.lxy.reset.base.BaseActivity;
 import com.hbjy.lxy.reset.utils.event.TextEvent;
@@ -38,18 +38,19 @@ public class RxBusActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void setContentView(Bundle savedInstanceState) {
         setContentView(R.layout.aty_rxbus);
         ButterKnife.inject(this);
     }
 
-    private void init(){
+    @Override
+    public void init() {
         manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
-        rxBusFragment = new RxBusFragment();
+        rxBusFragment = RxBusFragment.getInstance();
         transaction.replace(R.id.rxbus_fragment_content,rxBusFragment).commit();
     }
+
 
     @OnClick(R.id.rxbus_bt_test)
     public void onClick() {

@@ -29,7 +29,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'io.reactivex:rxjava:1.2.4'
     compile 'io.reactivex:rxandroid:1.1.0'
-    compile 'com.alibaba:arouter-api:1.0.7'
     testCompile 'junit:junit:4.12'
     compile files('libs/nineoldandroids-2.4.0.jar')
 }

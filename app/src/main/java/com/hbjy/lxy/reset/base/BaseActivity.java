@@ -14,10 +14,14 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected Context mContext;
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         mContext = BaseApplication.getContext();
+        setContentView(savedInstanceState);
+        init();
     }
 
     public abstract void navigation();
+    public abstract void setContentView(Bundle savedInstanceState);
+    public abstract void init();
 }
