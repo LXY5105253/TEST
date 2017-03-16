@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hbjy.lxy.library.rx.RxBus;
+import com.hbjy.lxy.library.rx.transformers.SchedulersCompat;
 import com.hbjy.lxy.reset.R;
+import com.hbjy.lxy.reset.base.BaseFragment;
 import com.hbjy.lxy.reset.utils.event.TextEvent;
+import com.trello.rxlifecycle.android.FragmentEvent;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -19,7 +22,7 @@ import rx.functions.Action1;
  * Created by Administrator on 2017/3/9 0009.
  */
 
-public class RxBusFragment extends android.support.v4.app.Fragment {
+public class RxBusFragment extends BaseFragment {
     @InjectView(R.id.rxbus_tv_show)
     TextView tvShow;
 
@@ -30,22 +33,26 @@ public class RxBusFragment extends android.support.v4.app.Fragment {
         return fragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected void init(@Nullable Bundle savedInstanceState) {
+        if (savedInstanceState == null){
+            initEvent();
+        }
+
+    }
+
+    @Override
+    protected View createView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_rxbus, container,false);
         ButterKnife.inject(this, view);
         return view;
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        initEvent();
-    }
-
     private void initEvent(){
         RxBus.getInstance()
                 .toObservable(TextEvent.class)
+                .compose(this.<TextEvent>bindUntilEvent(FragmentEvent.PAUSE))
+                .compose(SchedulersCompat.<TextEvent>observeOnMainThread())
                 .subscribe(new Action1<TextEvent>() {
                     @Override
                     public void call(TextEvent textEvent) {

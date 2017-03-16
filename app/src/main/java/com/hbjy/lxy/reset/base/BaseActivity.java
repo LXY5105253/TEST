@@ -1,16 +1,16 @@
 package com.hbjy.lxy.reset.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+
+import com.hbjy.lxy.rxview.helper.SupportActivity;
 
 /**
  * Created by Administrator on 2017/3/9 0009.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends SupportActivity{
 
     protected Context mContext;
     @Override
@@ -24,4 +24,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     public abstract void navigation();
     public abstract void setContentView(Bundle savedInstanceState);
     public abstract void init();
+
+    protected void showToast(CharSequence text){
+        Toast.makeText(mContext,text,Toast.LENGTH_SHORT).show();
+    }
+
+    protected void showToast(int resid){
+        Toast.makeText(mContext,resid,Toast.LENGTH_SHORT).show();
+    }
 }

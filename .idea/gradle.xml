@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/BaseFrame" />
+            <option value="$PROJECT_DIR$/RxView" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
