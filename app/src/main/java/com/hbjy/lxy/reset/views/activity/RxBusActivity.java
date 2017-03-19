@@ -9,17 +9,14 @@ import android.widget.FrameLayout;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.hbjy.lxy.library.rx.RxBus;
-import com.hbjy.lxy.library.rx.transformers.SchedulersCompat;
 import com.hbjy.lxy.reset.R;
 import com.hbjy.lxy.reset.base.BaseActivity;
 import com.hbjy.lxy.reset.utils.event.TextEvent;
 import com.hbjy.lxy.reset.views.fragment.RxBusFragment;
-import com.trello.rxlifecycle.android.FragmentEvent;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import rx.functions.Action1;
 
 /**
  * Created by Administrator on 2017/3/9 0009.
@@ -52,6 +49,16 @@ public class RxBusActivity extends BaseActivity {
         transaction = manager.beginTransaction();
         rxBusFragment = RxBusFragment.getInstance();
         transaction.replace(R.id.rxbus_fragment_content,rxBusFragment).commit();
+    }
+
+    @Override
+    protected void initPresenter() {
+
+    }
+
+    @Override
+    protected void destroyPresenter() {
+
     }
 
     @OnClick(R.id.rxbus_bt_test)

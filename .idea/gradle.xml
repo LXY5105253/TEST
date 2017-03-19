@@ -12,6 +12,8 @@
             <option value="$PROJECT_DIR$/BaseFrame" />
             <option value="$PROJECT_DIR$/RxView" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/model" />
+            <option value="$PROJECT_DIR$/presenter" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

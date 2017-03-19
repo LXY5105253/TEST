@@ -1,1 +1,1 @@
-include ':app', ':BaseFrame', ':RxView'
+include ':app', ':BaseFrame', ':RxView', ':model', ':presenter'

@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/Reset.iml" filepath="$PROJECT_DIR$/Reset.iml" />
       <module fileurl="file://$PROJECT_DIR$/RxView/RxView.iml" filepath="$PROJECT_DIR$/RxView/RxView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/model/model.iml" filepath="$PROJECT_DIR$/model/model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/presenter/presenter.iml" filepath="$PROJECT_DIR$/presenter/presenter.iml" />
     </modules>
   </component>
 </project>

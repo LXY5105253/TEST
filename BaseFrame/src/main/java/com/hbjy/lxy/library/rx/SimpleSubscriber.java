@@ -8,7 +8,7 @@ import rx.Subscriber;
  * Created by 李小勇 on 2017/3/13.
  */
 
-public class SimpleSubscriber<T> extends Subscriber<T>{
+public abstract class SimpleSubscriber<T> extends Subscriber<T>{
     @Override
     public void onCompleted() {
         DebugLog.log("onCompleted");

@@ -34,7 +34,8 @@ public class MainActivity extends ListActivity {
 
 
     private static ActivityInfo[] info = {
-            new ActivityInfo("RxBus测试",RxBusActivity.class)
+            new ActivityInfo("RxBus测试",RxBusActivity.class),
+            new ActivityInfo("网络测试",WeatherActivity.class)
 
     };
 

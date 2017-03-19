@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.hbjy.lxy.model.dagger.ApiComponent;
+import com.hbjy.lxy.model.dagger.ApiComponentHolder;
+import com.hbjy.lxy.model.dagger.ApiModule;
+import com.hbjy.lxy.model.dagger.DaggerApiComponent;
 
 /**
  * Created by Administrator on 2017/3/8 0008.
@@ -22,7 +26,7 @@ public class BaseApplication extends Application {
         super.onCreate();
         init();
         initARouter();
-
+        initDagger();
     }
 
     private void init(){
@@ -48,6 +52,11 @@ public class BaseApplication extends Application {
             ARouter.openDebug();
         }
         ARouter.init(this);
+    }
+
+    private void initDagger(){
+        ApiComponent apiComponent = DaggerApiComponent.builder().apiModule(new ApiModule()).build();
+        ApiComponentHolder.apiComponent = apiComponent;
     }
 
 }

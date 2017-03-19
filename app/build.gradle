@@ -41,4 +41,6 @@ dependencies {
     compile 'com.alibaba:arouter-api:1.0.7'
     annotationProcessor 'com.alibaba:arouter-compiler:1.0.3'
     compile project(':RxView')
+    compile project(':model')
+    compile project(':presenter')
 }

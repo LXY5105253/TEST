@@ -18,6 +18,7 @@ public abstract class BaseActivity extends SupportActivity{
         super.onCreate(savedInstanceState);
         mContext = BaseApplication.getContext();
         setContentView(savedInstanceState);
+        initPresenter();
         init();
     }
 
@@ -31,5 +32,14 @@ public abstract class BaseActivity extends SupportActivity{
 
     protected void showToast(int resid){
         Toast.makeText(mContext,resid,Toast.LENGTH_SHORT).show();
+    }
+
+    protected abstract void initPresenter();
+    protected abstract void destroyPresenter();
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        destroyPresenter();
     }
 }
